@@ -1,0 +1,7 @@
+These smileys were taken from TinyMCE which in turn took them from Mozille Thunderbird.
+
+== Copyright notice from TinyMCE ==
+http://www.tinymce.com/wiki.php/Plugin3x:emotions
+
+These emotions were taken from Mozilla Thunderbird. I hope they don't get angry if I use them here; after all this is an open source project as well, and I really love their product.
+
