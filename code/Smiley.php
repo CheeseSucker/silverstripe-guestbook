@@ -1,11 +1,6 @@
 <?php
 
-// Namespace this class as it has common name.
-// I would've namespaced the rest of the module,
-// but MySQL tools didn't play well with it.
-namespace CheeseSucker\mod_guestbook;
-
-class Smiley extends \ViewableData {
+class Smiley extends ViewableData {
 	private $symbol;
 	private $image;
 
@@ -27,9 +22,9 @@ class Smiley extends \ViewableData {
 	}
 
 	public static function getSmileyDir() {
-		$smileyDir = \Director::makeRelative(realpath(dirname(__FILE__) . "/../images/smileys/"));
+		$smileyDir = Director::makeRelative(realpath(dirname(__FILE__) . "/../images/smileys/"));
 		$smileyDir = str_replace("\\", "/", $smileyDir);
-		$smileyDir = \Director::baseURL() . $smileyDir;
+		$smileyDir = Director::baseURL() . $smileyDir;
 		return $smileyDir;
 	}
 

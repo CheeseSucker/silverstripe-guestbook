@@ -1,7 +1,5 @@
 <?php
 
-use \CheeseSucker\mod_guestbook\Smiley;
-
 /**
  * Represents each entry in a guestbook.
  */
@@ -11,23 +9,23 @@ class GuestbookEntry extends DataObject {
 	 */
 	public static function Smileys() {
 		return array(
-			new Smiley(":@", "angry.gif"),
-			new Smiley(":f", "flirt.gif"),
-			new Smiley("x(", "dead.gif"),
-			new Smiley(":(", "frown.gif"),
-			new Smiley(":h", "cool.gif"),
 			new Smiley(":)", "smile.gif"),
-			new Smiley(";)", "wink.gif"),
-			new Smiley(":-/", "undecided.gif"),
-			new Smiley(":o", "surprised.gif"),
-			new Smiley(":P", "tongue.gif"),
-			new Smiley(":r", "embarassed.gif"),
 			new Smiley(":e", "biggrin.gif"),
 			new Smiley(":D", "supergrin.gif"),
-			new Smiley(':$', "money.gif"),
-			new Smiley(":C", "cry.gif"),
+			new Smiley(";)", "wink.gif"),
+			new Smiley(":h", "cool.gif"),
+			new Smiley(":P", "tongue.gif"),
+			new Smiley(":-/", "undecided.gif"),
+			new Smiley(":(", "frown.gif"),
+			new Smiley(":o", "surprised.gif"),
+			new Smiley(":r", "embarassed.gif"),
+			new Smiley(":'(", "cry.gif"),
+			new Smiley(":@", "angry.gif"),
+			new Smiley("x(", "dead.gif"),
 			new Smiley(":i", "innocent.gif"),
-			new Smiley(":#", "sealed.gif")
+			new Smiley(":f", "flirt.gif"),			
+			new Smiley(":#", "sealed.gif"),
+			new Smiley(':$', "money.gif"),
 		);
 	}
 	
