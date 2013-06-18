@@ -1,3 +1,8 @@
+/* No entries */
+.guestbook .no-entries-message {
+	font-size: 150%;
+}
+
 /* Guestbook entries */
 .guestbook .entry {
 	margin-bottom: 30px;

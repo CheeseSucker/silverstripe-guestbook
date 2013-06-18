@@ -14,4 +14,3 @@ class GuestbookPage extends Page {
 		parent::getCMSFields();
 	}
 }
-

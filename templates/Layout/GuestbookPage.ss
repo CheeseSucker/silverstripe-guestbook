@@ -8,7 +8,11 @@
 
 	$Content
 
-	<% loop $PaginatedPages %>
+	<% if PaginatedEntries.Count == 0 %>
+		<p class="no-entries-message">Be the first to sign this guestbook!</p>
+	<% end_if %>
+
+	<% loop $PaginatedEntries %>
 		<div class="entry">
 			<div class="actions">
 				<% if $Email %>
@@ -38,15 +42,15 @@
 			<% end_if %>
 			</div>
 		</div>
-	<% end_loop %>
+	<% end_loop %>	
 
 	<p class="pagination">
-		<% with PaginatedPages %>
+		<% with PaginatedEntries %>
 			<% include PageControls %>
 		<% end_with %>
 	</p>
 
-	<p>Entry count: <strong>$Entries.Count</strong></p>
+	<p>Entries: <strong>$PaginatedEntries.Count</strong></p>
 
 	<h2>New entry</h2>
 	$NewEntryForm

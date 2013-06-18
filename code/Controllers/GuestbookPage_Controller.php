@@ -13,7 +13,7 @@ class GuestbookPage_Controller extends Page_Controller {
 	/**
 	* Returns a paginated list of all pages in the site.
 	*/
-   public function PaginatedPages() {
+   public function PaginatedEntries() {
 	   return new PaginatedList($this->Entries(), $this->request);
    }
 
