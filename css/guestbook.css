@@ -1,0 +1,67 @@
+/* Guestbook entries */
+.guestbook .entry {
+	margin-bottom: 30px;
+}
+.guestbook .entry img {
+	/* We don't want borders around smileys. */
+	border: 0;
+	/* Also, we don't want e.g. the AJAX indicator in the background */
+	background: none;
+}
+
+.guestbook .entry .title {
+	font-size: 110%;
+	font-weight: bold;
+	color: #234567;
+	border-bottom: 1px solid #234567;
+	padding-bottom: 5px;
+}
+.guestbook .entry .date {
+	color: #234567;
+	font-size: 80%;
+}
+.guestbook .entry .message {
+	margin-top: 15px;
+	margin-left: 10px;
+	padding: 5px;
+	border-left: 1px dotted #666;
+}
+.guestbook .entry .comment {
+	padding: 10px;
+	margin-left: 40px;
+	margin-top: 10px;
+	color: #666;
+	border: 1px dashed #666;
+	background-color: #FDFFDF;
+}
+
+/* Guestbook entry actions */
+.guestbook .entry .actions {
+	float: right;
+}
+
+.guestbook .entry .actions a {
+	background-repeat: no-repeat;
+	background-position: 4px 0px;
+	padding-left: 24px;
+}
+.guestbook .entry .actions .email {
+	background-image: url(../images/email.png);
+}
+.guestbook .entry .actions .website {
+	background-image: url(../images/website.png);
+}
+.guestbook .entry .actions .edit {
+	background-image: url(../images/edit.png);
+}
+.guestbook .entry .actions .delete {
+	background-image: url(../images/delete.png);
+}
+
+/* Pagination */
+.guestbook .pagination {
+	color: black;
+}
+.guestbook .pagination .active-page {
+	font-weight: bold;
+}

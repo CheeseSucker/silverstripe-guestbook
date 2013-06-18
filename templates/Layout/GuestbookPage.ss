@@ -1,40 +1,38 @@
 <!-- TODO: E-mail address obfuscation -->
 <% include SideBar %>
-<% require css(mod_guestbook/css/style.css) %>
+<% require css(mod_guestbook/css/guestbook.css) %>
 <% require javascript(mod_guestbook/javascript/guestbook.js) %>
 
-
-
-<div id="gjestebok">
+<div class="guestbook">
 	<h1>$Title</h1>
 
 	$Content
 
 	<% loop $PaginatedPages %>
-		<div class="innlegg">
-			<div class="moderator portal-guestbook-actions">
+		<div class="entry">
+			<div class="actions">
 				<% if $Email %>
-					<a href="mailto:$Email" class="portal-guestbook-email">E-mail</a>
+					<a href="mailto:$Email" class="action email">E-mail</a>
 				<% end_if %>
 				<% if $Website %>
-					<a href="$Website" rel="popup" class="portal-guestbook-website">
+					<a href="$Website" rel="popup" class="action website">
 						Website
 					</a>
 				<% end_if %>
 				<% if $Top.Moderator %>
-					<a href='$EditLink' title="Edit" class="portal-guestbook-edit">Edit</a>
+					<a href='$EditLink' title="Edit" class="action edit">Edit</a>
 					<a href='$DeleteLink' onclick="return confirm('Are you sure you want to delete this entry?')"
-					   title="Delete" class="portal-guestbook-delete">Delete</a>
+					   title="Delete" class="action delete">Delete</a>
 				<% end_if %>
 			</div>
-			<div class="tittel">$Name</div>
-			<div class="dato">$Date</div>
-			<div class="tekst">
+			<div class="title">$Name</div>
+			<div class="date">$Date</div>
+			<div class="message">
 				$FormattedMessage
 
 			<% if $Comment %>
-				<div class="kommentar">
-					<strong>Kommentar [Administrator]:</strong><br />
+				<div class="comment">
+					<strong>Comment [Administrator]:</strong><br />
 					$FormattedComment
 				</div>
 			<% end_if %>
@@ -42,14 +40,14 @@
 		</div>
 	<% end_loop %>
 
-
-	<p id="sider_bunn">
+	<p class="pagination">
 		<% with PaginatedPages %>
 			<% include PageControls %>
 		<% end_with %>
 	</p>
-	<p>Antall innlegg: <strong>$Entries.Count</strong></p>
 
-	<h2>Nytt innlegg</h2>
+	<p>Entry count: <strong>$Entries.Count</strong></p>
+
+	<h2>New entry</h2>
 	$NewEntryForm
 </div>
