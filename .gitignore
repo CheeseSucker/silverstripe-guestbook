@@ -216,3 +216,6 @@ pip-log.txt
 
 # Netbeans private folder
 /nbproject/private
+/tests/configuration.xml
+/tests/phpunit.xml
+/nbproject
