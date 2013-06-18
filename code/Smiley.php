@@ -32,4 +32,22 @@ class Smiley extends \ViewableData {
 		$smileyDir = \Director::baseURL() . $smileyDir;
 		return $smileyDir;
 	}
+
+	/**
+	 * Return an <img> tag pointing to the smiley.s
+	 * @return string HTML for an image tag,
+	 */
+	public function ImageTag() {
+		return '<img src="' . $this->Image() . '" alt="" />';
+	}
+
+	/**
+	 * Replaces symbols with image tags.
+	 * Example: ":-)" may be replaced with "<img src='baseUrl/smileys/smile.gif' alt="" />"
+	 * @param type $text
+	 */
+	public function replaceSymbols($text) {
+		$text = str_replace($this->Symbol(), $this->ImageTag(), $text);
+		return $text;
+	}
 }

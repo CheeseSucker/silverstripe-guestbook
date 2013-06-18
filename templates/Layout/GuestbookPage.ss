@@ -30,12 +30,12 @@
 			<div class="tittel">$Name</div>
 			<div class="dato">$Date</div>
 			<div class="tekst">
-				$MessageWithSmileys.Raw
+				$FormattedMessage
 
 			<% if $Comment %>
 				<div class="kommentar">
 					<strong>Kommentar [Administrator]:</strong><br />
-					$CommentWithSmileys.Raw
+					$FormattedComment
 				</div>
 			<% end_if %>
 			</div>

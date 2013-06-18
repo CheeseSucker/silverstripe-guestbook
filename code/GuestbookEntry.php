@@ -2,7 +2,13 @@
 
 use \CheeseSucker\mod_guestbook\Smiley;
 
+/**
+ * Represents each entry in a guestbook.
+ */
 class GuestbookEntry extends DataObject {
+	/**
+	 * @return array All defined smileys.
+	 */
 	public static function Smileys() {
 		return array(
 			new Smiley(":@", "angry.gif"),
@@ -54,6 +60,10 @@ class GuestbookEntry extends DataObject {
 			'Message'
 	   );
 
+	/**
+	 * Creates a guestbook entry with default values.
+	 * @return \GuestbookEntry
+	 */
 	public static function create() {
 		$entry = new GuestbookEntry();
 		$entry->Date = SS_DateTime::now()->getValue();
@@ -62,24 +72,45 @@ class GuestbookEntry extends DataObject {
 		return $entry;
 	}
 
-	public function MessageWithSmileys() {
-		return $this->InsertSmileys($this->Message);
+	/**
+	 * Gets the message where smileys have been replaced with images.
+	 * @return string
+	 */
+	public function FormattedMessage() {
+		return $this->FormattedText($this->Message);
 	}
 
-	public function CommentWithSmileys() {
-		return $this->InsertSmileys($this->Comment);
+	/**
+	 * Gets the comment where smileys have been replaced with images.
+	 * @return string
+	 */
+	public function FormattedComment() {
+		return $this->FormattedText($this->Comment);
 	}
 
-	public function InsertSmileys($text) {
+
+	/**
+	 * Formats text so it can be displayed as raw HTML. Also replaces smileys
+	 * with images.
+	 * @return string
+	 */
+	public function FormattedText($text) {
 		$text = Convert::raw2xml($text);
-		foreach (self::Smileys() as $smiley) {
-			/* @var $smiley Smiley */
-			$text = str_replace($smiley->Symbol(),
-						'<img src="'.$smiley->Image().'" alt="" />',
-						$text);
-		}
+		$text = $this->ReplaceSmileys($text);
+		$text = nl2br($text);
+		return $text;
+	}
 
-		return nl2br($text);
+	/**
+	 * Replace smiley symbols with images.
+	 * @param type $text
+	 * @return type
+	 */
+	public function ReplaceSmileys($text) {
+		foreach (self::Smileys() as $smiley) {
+			$text = $smiley->replaceSymbols($text);
+		}
+		return $text;
 	}
 
 	public function getCMSFields() {
