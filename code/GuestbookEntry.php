@@ -130,15 +130,23 @@ class GuestbookEntry extends DataObject {
 	}
 
 	public function EditLink() {
-		$id = $this->getField("ID");
+		$id = $this->ID;
 		return Director::baseURL() .
 				"/admin/guestbook/GuestbookEntry/EditForm/field/GuestbookEntry/item/$id/edit";
 	}
 
 	public function DeleteLink() {
-		$id = $this->getField("ID");
+		$id = $this->ID;
 		return Director::baseURL() .
 				"/admin/guestbook/GuestbookEntry/EditForm/field/GuestbookEntry/item/$id/doDelete";
+	}
+
+	public function EmailURL() {
+		if ($this->Guestbook()->canSeeEmailAddresses()) {
+			return 'mailto:' . $this->Email;
+		} else {
+			return $this->Guestbook()->Link('unlockemails');
+		}
 	}
 }
 

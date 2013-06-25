@@ -6,6 +6,12 @@
  * @author Hkn
  */
 class GuestbookPage_Controller extends Page_Controller {
+	private static $allowed_actions = array(
+			'postEntry',
+			'unlockemails',
+			'EmailProtectionForm'
+		);
+
 	/**
 	* Returns a paginated list of all pages in the site.
 	*/
@@ -72,6 +78,44 @@ class GuestbookPage_Controller extends Page_Controller {
 		Session::set('GuestbookPosted', time());
 
 		return $this->redirectBack();
+	}
+
+	public function EmailProtectionForm() {
+		// TODO: Make this a recaptcha form
+		$fields = new FieldList(
+					new LiteralField('Question', "What is 2 + 3?"),
+					new TextField('Answer')
+				);
+		$actions = new FieldList(FormAction::create('dounlockemails'));
+		$validator = new RequiredFields('Answer');
+
+		$form = new Form($this, 'EmailProtectionForm', $fields, $actions, $validator);
+		return $form;
+	}
+
+	public function unlockemails() {
+		if ($this->canSeeEmailAddresses()) {
+			return $this->redirect($this->Link());
+		}
+
+		return $this;
+	}
+
+	public function dounlockemails(array $data, Form $form) {
+		$answer = $data['Answer'];
+		if ($answer != 5) {
+			$form->addErrorMessage('Answer', 'Wrong answer.', 'bad');
+			return $this->redirectBack();
+		}
+
+		Session::set('Guestbook-ShowEmails', true);
+
+		// Add a flash message for the user
+		if (method_exists('Page_Controller', 'addMessage')) {
+			Page_Controller::addMessage('Successfully unlocked E-mail addresses', 'Success');
+		}
+
+		return $this->redirect($this->Link());
 	}
 
 	public function SmileyButtons($fieldID) {

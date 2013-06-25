@@ -1,4 +1,3 @@
-<!-- TODO: E-mail address obfuscation -->
 <% include SideBar %>
 <% require css(mod_guestbook/css/guestbook.css) %>
 <% require javascript(mod_guestbook/javascript/guestbook.js) %>
@@ -16,7 +15,7 @@
 		<div class="entry">
 			<div class="actions">
 				<% if $Email %>
-					<a href="mailto:$Email" class="action email">E-mail</a>
+					<a href="$EmailURL" class="action email">E-mail</a>
 				<% end_if %>
 				<% if $Website %>
 					<a href="$Website" rel="popup" class="action website">

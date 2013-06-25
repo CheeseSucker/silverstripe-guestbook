@@ -4,11 +4,13 @@ class GuestbookPage extends Page {
 	private static $db = array(
 		'EntriesPerPage' => 'Int',
 		'EnableEmoticons' => 'Boolean',
+		'ProtectEmails' => 'Boolean',
 	);
 
 	private static $defaults = array(
 		'EntriesPerPage' => 20,
 		'EnableEmoticons' => true,
+		'ProtectEmails' => true,
 	);
 
 	private static $has_many = array(
@@ -20,6 +22,7 @@ class GuestbookPage extends Page {
 		/* @var $fields FieldList  */
 		$fields->addFieldToTab('Root', new TextField('EntriesPerPage'), 'Content');
 		$fields->addFieldToTab('Root', new CheckboxField('EnableEmoticons'), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('ProtectEmails'), 'Content');
 		return $fields;
 	}
 
@@ -46,6 +49,10 @@ class GuestbookPage extends Page {
 
 	public function canDelete($member = null) {
 		return Permission::check('GUESTBOOK_DELETE', "any", $member);
+	}
+
+	public function canSeeEmailAddresses() {
+		return !$this->ProtectEmails || Member::currentUser() || Session::get('Guestbook-ShowEmails');
 	}
 
 	public function providePermissions() {
