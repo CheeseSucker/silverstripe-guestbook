@@ -3,10 +3,12 @@
 class GuestbookPage extends Page {
 	private static $db = array(
 		'EntriesPerPage' => 'Int',
+		'EnableEmoticons' => 'Boolean',
 	);
 
 	private static $defaults = array(
-		'EntriesPerPage' => 10,
+		'EntriesPerPage' => 20,
+		'EnableEmoticons' => true,
 	);
 
 	private static $has_many = array(
@@ -16,8 +18,8 @@ class GuestbookPage extends Page {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		/* @var $fields FieldList  */
-		$entriesPerPageField = new TextField('EntriesPerPage');
-		$fields->addFieldToTab('Root', $entriesPerPageField, 'Content');
+		$fields->addFieldToTab('Root', new TextField('EntriesPerPage'), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('EnableEmoticons'), 'Content');
 		return $fields;
 	}
 

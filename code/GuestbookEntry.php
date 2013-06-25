@@ -94,7 +94,9 @@ class GuestbookEntry extends DataObject {
 	 */
 	public function FormattedText($text) {
 		$text = Convert::raw2xml($text);
-		$text = $this->ReplaceSmileys($text);
+		if ($this->Guestbook()->EnableEmoticons) {
+			$text = $this->ReplaceSmileys($text);
+		}
 		$text = nl2br($text);
 		return $text;
 	}

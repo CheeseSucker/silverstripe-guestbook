@@ -25,9 +25,14 @@ class GuestbookPage_Controller extends Page_Controller {
 				new TextField('Name'), 
 				new EmailField('Email'),
 				TextField::create('Website')->setAttribute('type', 'url'),
-				new TextareaField("Message"),
-				new LiteralField("Smileys", $this->SmileyButtons("Form_NewEntryForm_Message"))
+				new TextareaField("Message")
 		);
+
+		if ($this->EnableEmoticons) {
+			$smileyButtons = $this->SmileyButtons("Form_NewEntryForm_Message");
+			$smileyField = new LiteralField("Smileys", $smileyButtons);
+			$fields->add($smileyField);
+		}
 
 		// Create actions
 		$actions = new FieldList(
