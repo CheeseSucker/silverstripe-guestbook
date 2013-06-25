@@ -6,15 +6,13 @@
  * @author Hkn
  */
 class GuestbookPage_Controller extends Page_Controller {
-	public function Entries() {
-		return GuestbookEntry::get()->sort("Date", "DESC");
-	}
-
 	/**
 	* Returns a paginated list of all pages in the site.
 	*/
    public function PaginatedEntries() {
-	   return new PaginatedList($this->Entries(), $this->request);
+	   $list = new PaginatedList($this->Entries(), $this->request);
+	   $list->setPageLength($this->EntriesPerPage);
+	   return $list;
    }
 
    public function Moderator() {
@@ -60,6 +58,7 @@ class GuestbookPage_Controller extends Page_Controller {
 		}
 
 		$entry = GuestbookEntry::create();
+		$entry->GuestbookID = $this->ID;
 		$form->saveInto($entry);
 		$entry->write();
 
