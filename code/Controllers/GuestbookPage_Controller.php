@@ -5,11 +5,12 @@
  *
  * @author Hkn
  */
-class GuestbookPage_Controller extends Page_Controller {
+class GuestbookPage_Controller extends Page_Controller implements PermissionProvider {
 	private static $allowed_actions = array(
 			'postEntry',
 			'unlockemails',
-			'EmailProtectionForm'
+			'EmailProtectionForm',
+			'doDelete'
 		);
 
 	/**
@@ -120,6 +121,37 @@ class GuestbookPage_Controller extends Page_Controller {
 
 	public function SmileyButtons($fieldID) {
 		return $this->renderWith("SmileyButtons", array('FieldID' => $fieldID));
+	}
+
+		public function canView($member = null) {
+		return Permission::check('GUESTBOOK_VIEW', "any", $member);
+	}
+
+	public function providePermissions() {
+		return array(
+			'GUESTBOOK_VIEW' => 'Read the guestbook',
+			'GUESTBOOK_CREATE' => 'Create a guestbook entry',
+			'GUESTBOOK_EDIT' => 'Edit a guestbook entry',
+			'GUESTBOOK_DELETE' => 'Delete a guestbook entry',
+		);
+	}
+
+	public function doDelete(SS_HTTPRequest $request) {
+		// TODO: Use POST and check form token.
+		// The current implementation is vulnerable to code such as:
+		// <img src="example.org/guestbook/doDelete?entry=123" alt="" />
+		if (!Permission::check('GUESTBOOK_DELETEENTRY')) {
+			Security::permissionFailure($this, "You do not have permission to delete entries.");
+			return;
+		}
+		$entryId = $request->getVar('entry');
+		if ($entryId == null || DataObject::get_by_id('GuestbookEntry', $entryId) == null) {
+			return;
+		}
+
+		DataObject::delete_by_id( 'GuestbookEntry', $entryId);
+		self::addMessage("Deleted guestbook entry #$entryId.", "Success");
+		$this->redirectBack();
 	}
 }
 
