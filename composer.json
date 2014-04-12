@@ -1,0 +1,13 @@
+{
+	"name": "cheesesucker/guestbook",
+	"description": "Guestbook module for SilverStripe 3",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "guestbook"],
+	"authors": [{
+			"name": "CheeseSucker",
+			"email": "cheesesucker@gmail.com"
+		}],
+	"require": {
+		"silverstripe/framework": "~3.1"
+	}
+}
