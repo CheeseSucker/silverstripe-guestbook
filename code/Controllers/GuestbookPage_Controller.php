@@ -22,8 +22,12 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	   return $list;
    }
 
-   public function Moderator() {
-	   return true;
+   public function Moderator($member = null) {
+	   return self::isModerator($member);
+   }
+
+   static public function isModerator($member = null) {
+	   return Permission::check('GUESTBOOK_MODERATE', "any", $member);
    }
 
    public function NewEntryForm() {
@@ -125,8 +129,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
 	public function providePermissions() {
 		return array(
-			'GUESTBOOK_EDIT' => 'Edit a guestbook entry',
-			'GUESTBOOK_DELETE' => 'Delete a guestbook entry',
+			'GUESTBOOK_MODERATE' => 'Edit guestbook entries',
 		);
 	}
 

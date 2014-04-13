@@ -40,12 +40,10 @@ class GuestbookPage extends Page {
 	}
 
 	public function canEdit($member = null) {
-		return Permission::check('GUESTBOOK_EDIT', "any", $member);
+		return GuestbookPage_Controller::isModerator($member);
 	}
 
 	public function canDelete($member = null) {
-		return Permission::check('GUESTBOOK_DELETE', "any", $member);
+		return GuestbookPage_Controller::isModerator($member);
 	}
-
-
 }
