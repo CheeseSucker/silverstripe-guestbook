@@ -1,11 +1,14 @@
 {
 	"name": "cheesesucker/guestbook",
 	"description": "Guestbook module for SilverStripe 3",
+	"homepage": "https://github.com/CheeseSucker/silverstripe-guestbook",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "guestbook"],
+	"license": "BSD-3-Clause",
 	"authors": [{
 			"name": "CheeseSucker",
-			"email": "cheesesucker@gmail.com"
+			"email": "cheesesucker@gmail.com",
+			"homepage": "https://github.com/CheeseSucker"
 		}],
 	"require": {
 		"silverstripe/framework": "~3.1"
