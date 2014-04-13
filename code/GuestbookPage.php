@@ -39,20 +39,12 @@ class GuestbookPage extends Page {
 		return $result;
 	}
 
-	public function canCreate($member = null) {
-		return Permission::check('GUESTBOOK_CREATE', "any", $member);
-	}
-
 	public function canEdit($member = null) {
 		return Permission::check('GUESTBOOK_EDIT', "any", $member);
 	}
 
 	public function canDelete($member = null) {
 		return Permission::check('GUESTBOOK_DELETE', "any", $member);
-	}
-
-	public function canView($member = null) {
-		return Permission::check('GUESTBOOK_VIEW', "any", $member);
 	}
 
 

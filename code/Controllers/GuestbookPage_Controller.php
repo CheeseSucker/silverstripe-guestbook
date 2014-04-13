@@ -10,7 +10,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 			'postEntry',
 			'unlockemails',
 			'EmailProtectionForm',
-			'doDelete'
+			'doDelete',
 		);
 
 	/**
@@ -123,14 +123,8 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		return $this->renderWith("SmileyButtons", array('FieldID' => $fieldID));
 	}
 
-		public function canView($member = null) {
-		return Permission::check('GUESTBOOK_VIEW', "any", $member);
-	}
-
 	public function providePermissions() {
 		return array(
-			'GUESTBOOK_VIEW' => 'Read the guestbook',
-			'GUESTBOOK_CREATE' => 'Create a guestbook entry',
 			'GUESTBOOK_EDIT' => 'Edit a guestbook entry',
 			'GUESTBOOK_DELETE' => 'Delete a guestbook entry',
 		);
