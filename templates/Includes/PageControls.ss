@@ -1,4 +1,6 @@
 <% if $MoreThanOnePage %>
+	Pages: 
+
 	<% if $NotFirstPage %>
 		<a class="prev" href="$PrevLink">Prev</a>
 	<% end_if %>

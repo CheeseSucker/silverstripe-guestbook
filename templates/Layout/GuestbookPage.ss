@@ -1,6 +1,6 @@
 <% include SideBar %>
-<% require css(mod_guestbook/css/guestbook.css) %>
-<% require javascript(mod_guestbook/javascript/guestbook.js) %>
+<% require css(guestbook/css/guestbook.css) %>
+<% require javascript(guestbook/javascript/guestbook.js) %>
 
 <div class="guestbook">
 	<h1>$Title</h1>
