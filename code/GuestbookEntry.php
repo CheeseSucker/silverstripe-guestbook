@@ -114,18 +114,21 @@ class GuestbookEntry extends DataObject {
 	}
 
 	public function getCMSFields() {
+		$labels = $this->fieldLabels();
+
 		$fields = parent::getCMSFields();
 		$fields->removeByName("PortalId");
-		$dateField = new DatetimeField("Date");
+		$dateField = new DatetimeField("Date", $labels["Date"]);
 		$dateField->getDateField()->setConfig('showcalendar', true);
+
 		$fields->addFieldToTab("Root.Main", $dateField);
-		$fields->addFieldToTab("Root.Main", new TextField("Name"));
-		$fields->addFieldToTab("Root.Main", new EmailField("Email"));
-		$fields->addFieldToTab("Root.Main", new TextField("Website"));
-		$fields->addFieldToTab("Root.Main", new ReadonlyField("IpAddress"));
-		$fields->addFieldToTab("Root.Main", new ReadonlyField("Host"));
-		$fields->addFieldToTab("Root.Main", new TextareaField("Message"));
-		$fields->addFieldToTab("Root.Main", new TextareaField("Comment"));
+		$fields->addFieldToTab("Root.Main", new TextField("Name", $labels["Name"]));
+		$fields->addFieldToTab("Root.Main", new EmailField("Email", $labels["Email"]));
+		$fields->addFieldToTab("Root.Main", new TextField("Website", $labels["Website"]));
+		$fields->addFieldToTab("Root.Main", new ReadonlyField("IpAddress", $labels["IpAddress"]));
+		$fields->addFieldToTab("Root.Main", new ReadonlyField("Host", $labels["Host"]));
+		$fields->addFieldToTab("Root.Main", new TextareaField("Message", $labels["Message"]));
+		$fields->addFieldToTab("Root.Main", new TextareaField("Comment", $labels["Comment"]));
 		return $fields;
 	}
 
@@ -142,5 +145,20 @@ class GuestbookEntry extends DataObject {
 			return $this->Guestbook()->Link('unlockemails');
 		}
 	}
-}
 
+	public function fieldLabels($includerelations = true) {
+		$labels = parent::fieldLabels($includerelations);
+
+		$labels['Guestbook'] = _t('GuestbookEntry.Guestbook', "Guestbook");
+		$labels['Date'] = _t('GuestbookEntry.Date', "Date");
+		$labels['Name'] = _t('GuestbookEntry.Name', "Name");
+		$labels['Email'] = _t('GuestbookEntry.Email', "Email");
+		$labels['Website'] = _t('GuestbookEntry.Website', "Website");
+		$labels['IpAddress'] = _t('GuestbookEntry.IpAddress', "IP address");
+		$labels['Host'] = _t('GuestbookEntry.Host', "Host");
+		$labels['Message'] = _t('GuestbookEntry.Message', "Message");
+		$labels['Comment'] = _t('GuestbookEntry.Comment', "Comment");
+
+		return $labels;
+   }
+}

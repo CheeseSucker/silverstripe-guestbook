@@ -1,0 +1,46 @@
+en:
+  GuestbookEntryAdmin:
+    MENUTITLE: 'My guestbook'
+  GuestbookPage:
+    SINGULARNAME: "Guestbook"
+    PLURALNAME: "Guestbooks"
+    ENTRIESPERPAGEERROR: 'EntriesPerPage must be greater than zero. Was {count}.'
+    EntriesPerPage: "Entries per page"
+    EnableEmoticons: "Enable emoticons"
+    ProtectEmails: "Protect email addresses"
+    UseSpamProtection: "Use spam protection"
+  GuestbookEntry:
+    SINGULARNAME: "Guestbook entry"
+    PLURALNAME: "Guestbook entries"
+    Guestbook: "Guestbook"
+    Date: "Date"
+    Name: "Name"
+    Email: "Email"
+    Website: "Website"
+    IpAddress: "IP address"
+    Host: "Host"
+    Message: "Message"
+    Comment: "Comment"
+    FloodLimit: "Flood protection: Seconds between posts from same IP"
+  GuestbookPage_ss:
+    EMAILPROTECTION: "Email protection"
+    EMAILPROTECTIONTEXT: "To show the email addresses, please fill in this form."
+    NOENTRIES: "Be the first to sign this guestbook!"
+    EMAIL: "E-mail"
+    WEBSITE: "Website"
+    EDIT: "Edit"
+    COMMENT: "Comment [Administrator]:"
+    ENTRIES: "Entries: <strong>{count}</strong>"
+    NEWENTRY: "New entry"
+  PageControls:
+    PAGES: "Pages:"
+    PREVIOUS: "Previous"
+    NEXT: "Next"
+  GuestbookController:
+    GUESTBOOKMODERATE: 'Edit guestbook entries'
+    POST: 'Post'
+    INVALIDWEBSITEFORMAT: "Invalid format for website."
+    FLOODLIMITEXCEEDED: "You have already posted the last {seconds} seconds. Please wait."
+    ENTRYSAVED: "Entry has been saved."
+    EMAILPROTECTIONLOGIN: "You must be logged in to see email addresses."
+    EMAILPROTECTIONUNLOCKED: 'Successfully unlocked E-mail addresses'

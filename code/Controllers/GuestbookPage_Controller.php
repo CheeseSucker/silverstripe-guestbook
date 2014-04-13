@@ -25,7 +25,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
    	public function providePermissions() {
 		return array(
-			'GUESTBOOK_MODERATE' => 'Edit guestbook entries',
+			'GUESTBOOK_MODERATE' => _t('GuestbookController.GUESTBOOKMODERATE', 'Edit guestbook entries'),
 		);
 	}
 
@@ -47,11 +47,14 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	
 	public function NewEntryForm() {
 		// Create fields
+		$entry = new GuestbookEntry();
+		$labels = $entry->fieldLabels();
+
 		$fields = new FieldList(
-				new TextField('Name'),
-				new EmailField('Email'),
-				TextField::create('Website')->setAttribute('type', 'url'),
-				new TextareaField("Message")
+				new TextField('Name', $labels['Name']),
+				new EmailField('Email', $labels['Email']),
+				TextField::create('Website', $labels['Website'])->setAttribute('type', 'url'),
+				new TextareaField("Message", $labels['Message'])
 		);
 
 		if ($this->EnableEmoticons) {
@@ -62,7 +65,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
 		// Create actions
 		$actions = new FieldList(
-				new FormAction('postEntry', 'Post')
+				new FormAction('postEntry', _t("GuestbookController.POST", 'Post'))
 		);
 
 		$validator = new RequiredFields('Name', 'Message');
@@ -78,14 +81,14 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	public function postEntry(array $data, Form $form) {
 		if (!empty($data['Website'])) {
 			if (!filter_var($data['Website'], FILTER_VALIDATE_URL)) {
-				$form->addErrorMessage('Website', "Invalid format for website.", 'bad');
+				$form->addErrorMessage('Website', _t('GuestbookController.INVALIDWEBSITEFORMAT', "Invalid format for website."), 'bad');
 				return $this->redirectBack();
 			}
 		}
 
-		$FloodLimit = 60 * 3;
-		if (Session::get("GuestbookPosted") > time() - $FloodLimit) {
-			$form->sessionMessage("You have already posted the last " . $FloodLimit . " seconds. Please wait.", 'bad');
+		if (Session::get("GuestbookPosted") > time() - $this->FloodLimit) {
+			$floodMessage = _t('GuestbookController.FLOODLIMITEXCEEDED', "You have already posted the last {seconds} seconds. Please wait.", "", $this->FloodLimit);
+			$form->sessionMessage($floodMessage, 'bad');
 			return $this->redirectBack();
 		}
 
@@ -94,7 +97,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		$form->saveInto($entry);
 		$entry->write();
 
-		$form->sessionMessage("Entry has been saved.", 'good');
+		$form->sessionMessage(_t('GuestbookController.ENTRYSAVED', "Entry has been saved."), 'good');
 
 		Session::set('GuestbookPosted', time());
 
@@ -120,7 +123,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
 		// Force a login if no spam protection module exists.
 		if (Form::has_extension('FormSpamProtectionExtension') == false) {
-			return Security::permissionFailure($this, "You must be logged in to see email addresses.");
+			return Security::permissionFailure($this, _t('GuestbookController.EMAILPROTECTIONLOGIN', "You must be logged in to see email addresses."));
 		}
 
 		// Use spam protection module
@@ -136,7 +139,7 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
 		// Add a flash message for the user
 		if (method_exists('Page_Controller', 'addMessage')) {
-			Page_Controller::addMessage('Successfully unlocked E-mail addresses', 'Success');
+			Page_Controller::addMessage(_t('GuestbookController.EMAILPROTECTIONUNLOCKED', 'Successfully unlocked E-mail addresses'), 'Success');
 		}
 
 		return $this->redirect($this->Link());

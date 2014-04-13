@@ -9,11 +9,11 @@ SilverStripe 3.1 Guestbook module.
  - Moderators can comment on entries
  - E-mail address protection
  - Spam protection
+ - Flooding protection
 
 
 ## TODO ##
- - [ ] Make it translatable
- - [ ] Administration page should be for one guestbook.
+ - [ ] Improve administration pages
  - [ ] Unit tests
  - [ ] Register on packagist
 

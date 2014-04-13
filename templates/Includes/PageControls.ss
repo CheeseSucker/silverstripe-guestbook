@@ -1,8 +1,8 @@
 <% if $MoreThanOnePage %>
-	Pages: 
+	<%t PageControls.PAGES "Pages:" %>
 
 	<% if $NotFirstPage %>
-		<a class="prev" href="$PrevLink">Prev</a>
+		<a class="prev" href="$PrevLink"><%t PageControls.PREVIOUS "Previous" %></a>
 	<% end_if %>
 	<% loop $Pages %>
 		<% if $CurrentBool %>
@@ -16,6 +16,6 @@
 		<% end_if %>
 	<% end_loop %>
 	<% if $NotLastPage %>
-		<a class="next" href="$NextLink">Next</a>
+		<a class="next" href="$NextLink"><%t PageControls.NEXT "Next" %></a>
 	<% end_if %>
 <% end_if %>

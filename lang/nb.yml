@@ -1,0 +1,46 @@
+nb:
+  GuestbookEntryAdmin:
+    MENUTITLE: 'Gjestebok'
+  GuestbookPage:
+    SINGULARNAME: "Gjestebok"
+    PLURALNAME: "Gjestebøker"
+    ENTRIESPERPAGEERROR: 'Må ha minst ett innlegg per side. (Var {count})'
+    EntriesPerPage: "Innlegg per side"
+    EnableEmoticons: "Aktiver smilefjes"
+    ProtectEmails: "Beskytt epostadresser"
+    UseSpamProtection: "Bruk spambeskyttelse"
+  GuestbookEntry:
+    SINGULARNAME: "Gjestebokinnlegg"
+    PLURALNAME: "Gjestebokinnlegg"
+    Guestbook: "Gjestebok"
+    Date: "Dato"
+    Name: "Navn"
+    Email: "Epost"
+    Website: "Hjemmeside"
+    IpAddress: "IP-adresse"
+    Host: "Vert"
+    Message: "Melding"
+    Comment: "Kommentar"
+    FloodLimit: "Floodingbeskyttelse: Sekunder mellom hvert innlegg"
+  GuestbookPage_ss:
+    EMAILPROTECTION: "Epostbeskyttelse"
+    EMAILPROTECTIONTEXT: "For å vise epostadresser må du fylle inn dette skjemaet."
+    NOENTRIES: "Vær den første til å skrive i gjesteboken!"
+    EMAIL: "E-post"
+    WEBSITE: "Hjemmeside"
+    EDIT: "Rediger"
+    COMMENT: "Kommentar [Administrator]:"
+    ENTRIES: "Innlegg: <strong>{count}</strong>"
+    NEWENTRY: "Nytt innlegg"
+  PageControls:
+    PAGES: "Sider:"
+    PREVIOUS: "Forrige"
+    NEXT: "Neste"
+  GuestbookController:
+    GUESTBOOKMODERATE: 'Rediger gjestebokinnlegg'
+    POST: 'Send inn'
+    INVALIDWEBSITEFORMAT: "Ugyldig format for nettadresse"
+    FLOODLIMITEXCEEDED: "Du har allerede skrevet et innlegg de siste {seconds} sekundene. Vennligst vent."
+    ENTRYSAVED: "Innlegg har blitt lagret."
+    EMAILPROTECTIONLOGIN: "Du må være innlogget for å se epostadresser."
+    EMAILPROTECTIONUNLOCKED: 'Epostadresser er nå synlige'

@@ -8,22 +8,28 @@
 	$Content
 
 	<% if PaginatedEntries.Count == 0 %>
-		<p class="no-entries-message">Be the first to sign this guestbook!</p>
+		<p class="no-entries-message">
+			<%t GuestbookPage_ss.NOENTRIES "Be the first to sign this guestbook!" %>
+		</p>
 	<% end_if %>
 
 	<% loop $PaginatedEntries %>
 		<div class="entry">
 			<div class="actions">
 				<% if $Email %>
-					<a href="$EmailURL" class="action email">E-mail</a>
+					<a href="$EmailURL" class="action email">
+						<%t GuestbookPage_ss.EMAIL "E-mail" %>
+					</a>
 				<% end_if %>
 				<% if $Website %>
 					<a href="$Website" rel="popup" class="action website">
-						Website
+						<%t GuestbookPage_ss.WEBSITE "Website" %>
 					</a>
 				<% end_if %>
 				<% if $Top.Moderator %>
-					<a href='$EditLink' title="Edit" class="action edit">Edit</a>
+					<a href='$EditLink' class="action edit">
+						<%t GuestbookPage_ss.EDIT "Edit" %>
+					</a>
 				<% end_if %>
 			</div>
 			<div class="title">$Name</div>
@@ -33,7 +39,7 @@
 
 			<% if $Comment %>
 				<div class="comment">
-					<strong>Comment [Administrator]:</strong><br />
+					<strong><%t GuestbookPage_ss.ss.COMMENT "Comment [Administrator]:" %></strong><br />
 					$FormattedComment
 				</div>
 			<% end_if %>
@@ -47,8 +53,8 @@
 		<% end_with %>
 	</p>
 
-	<p>Entries: <strong>$PaginatedEntries.Count</strong></p>
+	<p><%t GuestbookPage_ss.ENTRIES "Entries: <strong>{count}</strong>" count=$PaginatedEntries.Count %></p>
 
-	<h2>New entry</h2>
+	<h2><%t GuestbookPage_ss.NEWENTRY "New entry" %></h2>
 	$NewEntryForm
 </div>
