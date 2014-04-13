@@ -1,7 +1,5 @@
 <?php
 
-use \CheeseSucker\mod_guestbook\Smiley;
-
 class SmileyTest extends SapphireTest {
 	public function setUp() {
 		parent::setUp();

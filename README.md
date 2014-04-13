@@ -1,5 +1,4 @@
-mod_guestbook
-=============
+# silverstripe-guestbook #
 
 SilverStripe 3.1 Guestbook module.
 
