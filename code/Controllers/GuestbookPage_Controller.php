@@ -9,9 +9,9 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	private static $allowed_actions = array(
 			'NewEntryForm',
 			'postEntry',
-			'unlockemails',
 			'EmailProtectionForm',
-			'doDelete' => '->canDelete',
+			'unlockemails',
+			'dounlockemails',
 		);
 
 	/**
@@ -140,25 +140,6 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		}
 
 		return $this->redirect($this->Link());
-	}
-
-	public function doDelete(SS_HTTPRequest $request) {
-		// TODO: Use POST and check form token.
-		// The current implementation is vulnerable to code such as:
-		// <img src="example.org/guestbook/doDelete?entry=123" alt="" />
-		if (!self::isModerator()) {
-			return Security::permissionFailure($this, "You do not have permission to delete entries.");
-		}
-		$entryId = $request->getVar('entry');
-		if ($entryId == null || DataObject::get_by_id('GuestbookEntry', $entryId) == null) {
-			return;
-		}
-
-		DataObject::delete_by_id( 'GuestbookEntry', $entryId);
-		if (method_exists('Page_Controller', 'addMessage')) {
-			self::addMessage("Deleted guestbook entry #$entryId.", "Success");
-		}
-		$this->redirectBack();
 	}
 }
 

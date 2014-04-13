@@ -7,16 +7,15 @@ SilverStripe 3.1 Guestbook module.
  - Emoticons
  - Pagination
  - Moderators can comment on entries
- - Edit and delete entries
  - E-mail address protection
  - Spam protection
 
 
 ## TODO ##
  - [ ] Make it translatable
- - [ ] Fix links for edit and delete.
  - [ ] Administration page should be for one guestbook.
  - [ ] Unit tests
+ - [ ] Register on packagist
 
 ## Installation ##
 

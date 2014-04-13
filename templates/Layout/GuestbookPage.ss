@@ -24,8 +24,6 @@
 				<% end_if %>
 				<% if $Top.Moderator %>
 					<a href='$EditLink' title="Edit" class="action edit">Edit</a>
-					<a href='$DeleteLink' onclick="return confirm('Are you sure you want to delete this entry?')"
-					   title="Delete" class="action delete">Delete</a>
 				<% end_if %>
 			</div>
 			<div class="title">$Name</div>

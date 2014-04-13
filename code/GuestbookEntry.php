@@ -135,12 +135,6 @@ class GuestbookEntry extends DataObject {
 				"/admin/guestbook/GuestbookEntry/EditForm/field/GuestbookEntry/item/$id/edit";
 	}
 
-	public function DeleteLink() {
-		$id = $this->ID;
-		return Director::baseURL() .
-				"/admin/guestbook/GuestbookEntry/EditForm/field/GuestbookEntry/item/$id/doDelete";
-	}
-
 	public function EmailURL() {
 		if ($this->Guestbook()->canSeeEmailAddresses()) {
 			return 'mailto:' . $this->Email;
