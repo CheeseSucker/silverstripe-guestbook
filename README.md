@@ -20,12 +20,12 @@ SilverStripe 3.1 Guestbook module.
 
 ## Installation ##
 
-Make sure the folder is named *guestbook*, otherwise CSS and JavaScript won't
+Make sure the folder is named **guestbook**, otherwise CSS and JavaScript won't
 be included correctly.
 
 ### Manual ###
 
-Copy the files to a subfolder *guestbook* in your SilverStripe project.
+Copy the files to a subfolder **guestbook** in your SilverStripe project.
 Then run `/dev/build?flush=all`
 
 ### Composer ###
