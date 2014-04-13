@@ -5,12 +5,14 @@ class GuestbookPage extends Page {
 		'EntriesPerPage' => 'Int',
 		'EnableEmoticons' => 'Boolean',
 		'ProtectEmails' => 'Boolean',
+		'UseSpamProtection' => 'Boolean'
 	);
 
 	private static $defaults = array(
 		'EntriesPerPage' => 20,
 		'EnableEmoticons' => true,
 		'ProtectEmails' => true,
+		'UseSpamProtection' => false
 	);
 
 	private static $has_many = array(
@@ -27,6 +29,7 @@ class GuestbookPage extends Page {
 		$fields->addFieldToTab('Root', new TextField('EntriesPerPage'), 'Content');
 		$fields->addFieldToTab('Root', new CheckboxField('EnableEmoticons'), 'Content');
 		$fields->addFieldToTab('Root', new CheckboxField('ProtectEmails'), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('UseSpamProtection'), 'Content');
 		return $fields;
 	}
 

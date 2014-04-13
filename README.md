@@ -2,7 +2,6 @@ mod_guestbook
 =============
 
 SilverStripe 3.1 Guestbook module.
-Not released yet.
 
 ## Features ##
 
@@ -17,7 +16,27 @@ Not released yet.
 
 
 ## TODO ##
- [ ] Spam protection
  [ ] Make it translatable
- [ ] Make it look nicer
- [ ] Inline editing?
+ [ ] Fix links for edit and delete.
+ [ ] Administration page should be for one guestbook.
+ [ ] Unit tests
+
+## Installation ##
+
+Make sure the folder is named "guestbook", otherwise CSS and JavaScript won't
+be included correctly.
+
+### Manual ###
+
+Copy the files to a subfolder "guestbook" in your SilverStripe project.
+Then run ''/dev/build?flush=all''
+
+### Composer ###
+''composer require "cheesesucker/guestbook:dev-master"''
+Then run ''/dev/build?flush=all''
+
+
+## Spam protection ##
+
+In order to use spam protection, you need [a spam protection module](https://github.com/silverstripe/silverstripe-spamprotection).
+

@@ -7,10 +7,11 @@
  */
 class GuestbookPage_Controller extends Page_Controller implements PermissionProvider {
 	private static $allowed_actions = array(
+			'NewEntryForm',
 			'postEntry',
 			'unlockemails',
 			'EmailProtectionForm',
-			'doDelete',
+			'doDelete' => '->canDelete',
 		);
 
 	/**
@@ -22,6 +23,12 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	   return $list;
    }
 
+   	public function providePermissions() {
+		return array(
+			'GUESTBOOK_MODERATE' => 'Edit guestbook entries',
+		);
+	}
+
    public function Moderator($member = null) {
 	   return self::isModerator($member);
    }
@@ -30,10 +37,18 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	   return Permission::check('GUESTBOOK_MODERATE', "any", $member);
    }
 
-   public function NewEntryForm() {
+	public function Smileys() {
+		return new ArrayList(GuestbookEntry::Smileys());
+	}
+
+	public function SmileyButtons($fieldID) {
+		return $this->renderWith("SmileyButtons", array('FieldID' => $fieldID));
+	}
+	
+	public function NewEntryForm() {
 		// Create fields
 		$fields = new FieldList(
-				new TextField('Name'), 
+				new TextField('Name'),
 				new EmailField('Email'),
 				TextField::create('Website')->setAttribute('type', 'url'),
 				new TextareaField("Message")
@@ -52,11 +67,12 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 
 		$validator = new RequiredFields('Name', 'Message');
 
-		return new Form($this, 'NewEntryForm', $fields, $actions, $validator);
-	}
-
-	public function Smileys() {
-		return new ArrayList(GuestbookEntry::Smileys());
+		$form = new Form($this, 'NewEntryForm', $fields, $actions, $validator);
+		$form->setRedirectToFormOnValidationError(true); 
+		if ($this->UseSpamProtection) {
+			$form->enableSpamProtection();
+		}
+		return $form;
 	}
 
 	public function postEntry(array $data, Form $form) {
@@ -86,30 +102,33 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 	}
 
 	public function EmailProtectionForm() {
-		// TODO: Make this a recaptcha form
-		$fields = new FieldList(
-					new LiteralField('Question', "What is 2 + 3?"),
-					new TextField('Answer')
-				);
+		$fields = new FieldList();
 		$actions = new FieldList(FormAction::create('dounlockemails'));
-		$validator = new RequiredFields('Answer');
 
-		$form = new Form($this, 'EmailProtectionForm', $fields, $actions, $validator);
+		$form = new Form($this, 'EmailProtectionForm', $fields, $actions);
+		$form->enableSpamProtection();
 		return $form;
 	}
 
 	public function unlockemails() {
 		if ($this->canSeeEmailAddresses()) {
+			// User can already see email addresses.
+			// Redirect back to guestboook.
 			return $this->redirect($this->Link());
 		}
 
+
+		// Force a login if no spam protection module exists.
+		if (Form::has_extension('FormSpamProtectionExtension') == false) {
+			return Security::permissionFailure($this, "You must be logged in to see email addresses.");
+		}
+
+		// Use spam protection module
 		return $this;
 	}
 
 	public function dounlockemails(array $data, Form $form) {
-		$answer = $data['Answer'];
-		if ($answer != 5) {
-			$form->addErrorMessage('Answer', 'Wrong answer.', 'bad');
+		if (!$form->validate()) {
 			return $this->redirectBack();
 		}
 
@@ -123,23 +142,12 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		return $this->redirect($this->Link());
 	}
 
-	public function SmileyButtons($fieldID) {
-		return $this->renderWith("SmileyButtons", array('FieldID' => $fieldID));
-	}
-
-	public function providePermissions() {
-		return array(
-			'GUESTBOOK_MODERATE' => 'Edit guestbook entries',
-		);
-	}
-
 	public function doDelete(SS_HTTPRequest $request) {
 		// TODO: Use POST and check form token.
 		// The current implementation is vulnerable to code such as:
 		// <img src="example.org/guestbook/doDelete?entry=123" alt="" />
-		if (!Permission::check('GUESTBOOK_DELETEENTRY')) {
-			Security::permissionFailure($this, "You do not have permission to delete entries.");
-			return;
+		if (!self::isModerator()) {
+			return Security::permissionFailure($this, "You do not have permission to delete entries.");
 		}
 		$entryId = $request->getVar('entry');
 		if ($entryId == null || DataObject::get_by_id('GuestbookEntry', $entryId) == null) {
@@ -147,7 +155,9 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		}
 
 		DataObject::delete_by_id( 'GuestbookEntry', $entryId);
-		self::addMessage("Deleted guestbook entry #$entryId.", "Success");
+		if (method_exists('Page_Controller', 'addMessage')) {
+			self::addMessage("Deleted guestbook entry #$entryId.", "Success");
+		}
 		$this->redirectBack();
 	}
 }
