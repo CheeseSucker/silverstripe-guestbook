@@ -13,7 +13,7 @@ SilverStripe 3.1 Guestbook module.
  
 ## Screenshot ##
 
-![Guestbook](http://i.imgur.com/4pPSlqY.png "Guestbook")
+![Guestbook](http://i.imgur.com/O4rPnRk.png "Guestbook")
 
 ## Installation ##
 
