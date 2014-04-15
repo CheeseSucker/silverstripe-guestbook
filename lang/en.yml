@@ -43,4 +43,5 @@ en:
     FLOODLIMITEXCEEDED: "You have already posted the last {seconds} seconds. Please wait."
     ENTRYSAVED: "Entry has been saved."
     EMAILPROTECTIONLOGIN: "You must be logged in to see email addresses."
-    EMAILPROTECTIONUNLOCKED: 'Successfully unlocked E-mail addresses'
+    EMAILPROTECTIONUNLOCKED: 'Successfully unlocked e-mail addresses'
+    SPAMPROTECTIONNOTINSTALLED: 'Spam protection has been enabled, but no spam protection module is installed!'

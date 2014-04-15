@@ -73,7 +73,12 @@ class GuestbookPage_Controller extends Page_Controller implements PermissionProv
 		$form = new Form($this, 'NewEntryForm', $fields, $actions, $validator);
 		$form->setRedirectToFormOnValidationError(true); 
 		if ($this->UseSpamProtection) {
-			$form->enableSpamProtection();
+			if (Form::has_extension('FormSpamProtectionExtension')) {
+				$form->enableSpamProtection();
+			} else {
+				$message = _t('GuestbookController.SPAMPROTECTIONNOTINSTALLED', 'Spam protection has been enabled, but no spam protection module is installed!');
+				$form->setMessage($message, 'warning');
+			}
 		}
 		return $form;
 	}

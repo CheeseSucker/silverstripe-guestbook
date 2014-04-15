@@ -44,3 +44,4 @@ nb:
     ENTRYSAVED: "Innlegg har blitt lagret."
     EMAILPROTECTIONLOGIN: "Du må være innlogget for å se epostadresser."
     EMAILPROTECTIONUNLOCKED: 'Epostadresser er nå synlige'
+    SPAMPROTECTIONNOTINSTALLED: 'Spambeskyttelse er aktivert, men ingen beskyttelsesmodul er installert!'
