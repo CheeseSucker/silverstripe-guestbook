@@ -10,6 +10,10 @@ SilverStripe 3.1 Guestbook module.
  - E-mail address protection
  - Spam protection
  - Flooding protection
+ 
+## Screenshot ##
+
+![Guestbook](http://i.imgur.com/O4rPnRk.png "Guestbook")
 
 ## Installation ##
 
