@@ -9,6 +9,7 @@ en:
     EnableEmoticons: "Enable emoticons"
     ProtectEmails: "Protect email addresses"
     UseSpamProtection: "Use spam protection"
+    FloodLimit: "Flood protection: Seconds between posts"
   GuestbookEntry:
     SINGULARNAME: "Guestbook entry"
     PLURALNAME: "Guestbook entries"
@@ -21,7 +22,6 @@ en:
     Host: "Host"
     Message: "Message"
     Comment: "Comment"
-    FloodLimit: "Flood protection: Seconds between posts from same IP"
   GuestbookPage_ss:
     EMAILPROTECTION: "Email protection"
     EMAILPROTECTIONTEXT: "To show the email addresses, please fill in this form."

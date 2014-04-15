@@ -9,6 +9,7 @@ nb:
     EnableEmoticons: "Aktiver smilefjes"
     ProtectEmails: "Beskytt epostadresser"
     UseSpamProtection: "Bruk spambeskyttelse"
+    FloodLimit: "Floodingbeskyttelse: Sekunder mellom hvert innlegg"
   GuestbookEntry:
     SINGULARNAME: "Gjestebokinnlegg"
     PLURALNAME: "Gjestebokinnlegg"
@@ -20,8 +21,7 @@ nb:
     IpAddress: "IP-adresse"
     Host: "Vert"
     Message: "Melding"
-    Comment: "Kommentar"
-    FloodLimit: "Floodingbeskyttelse: Sekunder mellom hvert innlegg"
+    Comment: "Kommentar"   
   GuestbookPage_ss:
     EMAILPROTECTION: "Epostbeskyttelse"
     EMAILPROTECTIONTEXT: "For å vise epostadresser må du fylle inn dette skjemaet."

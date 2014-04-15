@@ -28,11 +28,12 @@ class GuestbookPage extends Page {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		/* @var $fields FieldList  */
-		$fields->addFieldToTab('Root', new TextField('EntriesPerPage'), 'Content');
-		$fields->addFieldToTab('Root', new TextField('FloodLimit'), 'Content');
-		$fields->addFieldToTab('Root', new CheckboxField('EnableEmoticons'), 'Content');
-		$fields->addFieldToTab('Root', new CheckboxField('ProtectEmails'), 'Content');
-		$fields->addFieldToTab('Root', new CheckboxField('UseSpamProtection'), 'Content');
+		$labels = $this->fieldLabels();
+		$fields->addFieldToTab('Root', new TextField('EntriesPerPage', $labels['EntriesPerPage']), 'Content');
+		$fields->addFieldToTab('Root', new TextField('FloodLimit', $labels['FloodLimit']), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('EnableEmoticons', $labels['EnableEmoticons']), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('ProtectEmails', $labels['ProtectEmails']), 'Content');
+		$fields->addFieldToTab('Root', new CheckboxField('UseSpamProtection', $labels['UseSpamProtection']), 'Content');
 		return $fields;
 	}
 
@@ -61,7 +62,7 @@ class GuestbookPage extends Page {
 		$labels['EnableEmoticons'] = _t('GuestbookPage.EnableEmoticons', "Enable emoticons");
 		$labels['ProtectEmails'] = _t('GuestbookPage.ProtectEmails', "Protect email addresses");
 		$labels['UseSpamProtection'] = _t('GuestbookPage.UseSpamProtection', "Use spam protection");
-		$labels['FloodLimit'] = _t('GuestbookPage.FloodLimit', "Flood protection: Seconds between posts from same IP");
+		$labels['FloodLimit'] = _t('GuestbookPage.FloodLimit', "Flood protection: Seconds between posts");
 
 		return $labels;
    }
