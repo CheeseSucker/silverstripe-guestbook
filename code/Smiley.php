@@ -42,7 +42,8 @@ class Smiley extends ViewableData {
 	 * @param type $text
 	 */
 	public function replaceSymbols($text) {
-		$text = str_replace($this->Symbol(), $this->ImageTag(), $text);
+		$xmlSymbol = Convert::raw2xml($this->Symbol());
+		$text = str_replace($xmlSymbol, $this->ImageTag(), $text);
 		return $text;
 	}
 }
