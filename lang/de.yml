@@ -40,7 +40,7 @@ de:
     GUESTBOOKMODERATE: 'Gästebucheintrag bearbeiten'
     POST: 'Eintragen'
     INVALIDWEBSITEFORMAT: "Das Webseitenformat ist nicht korrekt"
-    FLOODLIMITEXCEEDED: "Sie haben vor {seconds} seconds bereits einen Eintrag gespeichert. Bitte warten."
+    FLOODLIMITEXCEEDED: "Sie haben vor {seconds} Sekunden bereits einen Eintrag gespeichert. Bitte warten."
     ENTRYSAVED: "Eintrag gespeichert."
     EMAILPROTECTIONLOGIN: "Sie müssen eingeloggt sein um E-Mail-Adressen sehen zu können"
     EMAILPROTECTIONUNLOCKED: 'E-Mail-Adressen wurden freigeschaltet'
