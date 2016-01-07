@@ -35,7 +35,7 @@ Then run `/dev/build?flush=all`
 In order to use spam protection, you need [a spam protection module](https://github.com/silverstripe/silverstripe-spamprotection).
 
 
-## License ##
+## License: BSD-3-Clause ##
 
    Copyright (c) 2014, CheeseSucker All rights reserved.
 
